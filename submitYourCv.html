@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your CV</title>
+    <link rel="shortcut icon" href="./c-icon.png" type="image/x-icon">
+    <style>
+        :root {
+            --bg-color: #EFEAE3;
+            --primary-orange: #E67E22;
+            --secondary-orange: #F39C12;
+            --light-orange: #FEF5E7;
+            --dark-text: #333333;
+            --light-text: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav {
+            padding: 0vw 0vw;
+            width: 100%;
+            height: 15vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+
+        nav img {
+            height: 90px;
+            width: auto;  
+        }
+
+        #nav-part2 {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        #nav-part2 h4 {
+            padding: 10px 20px;
+            border: 1px solid #0000003c;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #000000bb;
+            transition: all ease 0.4s;
+            position: relative;
+            font-size: 18px;
+            overflow: hidden;
+        }
+
+        #nav-part2 h4::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            left: 0;
+            bottom: -100%;
+            border-radius: 50%;
+            transition: all ease 0.4s;
+        }
+
+        #nav-part2 h4:hover::after {
+            bottom: 0;
+            border-radius: 0;
+        }
+
+        #nav-part2 h4 a {
+            color: #000000bb;
+            text-decoration: none;
+            position: relative;
+            z-index: 9;
+        }
+
+        #nav-part2 h4:hover a {
+            color: #fff;
+        }
+
+        nav h3 {
+            display: none;
+        }
+
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bento-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-orange);
+            padding-bottom: 0.5rem;
+        }
+
+        .card-title {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+
+        .file-upload {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border: 2px dashed var(--secondary-orange);
+            border-radius: var(--border-radius);
+            background-color: var(--light-orange);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            background-color: rgba(243, 156, 18, 0.1);
+        }
+
+        .file-upload input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .file-name {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-orange);
+            color: var(--light-text);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-orange);
+            transform: translateY(-2px);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--light-orange);
+            color: var(--primary-orange);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-tag button {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            margin-left: 0.3rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .skill-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-skill-btn {
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem;
+            cursor: pointer;
+        }
+
+        .past-company {
+            background-color: var(--light-orange);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .add-company-btn {
+            background: none;
+            border: 1px solid var(--primary-orange);
+            color: var(--primary-orange);
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .add-company-btn:hover {
+            background-color: var(--light-orange);
+        }
+
+        .companies-container {
+            margin-top: 0.5rem;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./index.html"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=984,h=656,fit=crop/YD066kjwLgu9x1P5/business-removebg-preview-AQEyWWDQeDhWxpL2.png" alt="logo"></a>
+        
+       <!-- <div id="nav-part2">
+            <h4><a href="#">About</a></h4>
+            <h4><a href="#">Service</a></h4>
+            <h4><a href="#">Team</a></h4>
+            <h4><a href="./contact.html">Contact</a></h4>
+            <h4><a href="./submitYourCv.html">Submit Your CV</a></h4>
+        </div> -->
+        <h3>Menu</h3>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Let us discover your potential            </h1>
+            
+        </header>
+        
+        <form id="cv-form">
+            <div class="bento-grid">
+                <!-- Personal Information Card -->
+                <div class="bento-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Personal Information</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Full Name*</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="name-error">Please enter your full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <div class="error-message" id="phone-error">Please enter a valid phone number</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth*</label>
+                        <input type="date" id="dob" name="dob" required>
+                        <div class="error-message" id="dob-error">Please enter your date of birth</div>
+                    </div>
+                </div>
+
+                <!-- Professional Information Card -->
+                <div class="bento-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Professional Information</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role Applying For*</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select a role</option>
+                            <option value="software-engineer">Software Engineer</option>
+                            <option value="product-manager">Product Manager</option>
+                            <option value="ux-designer">UX Designer</option>
+                            <option value="data-scientist">Data Scientist</option>
+                            <option value="marketing-specialist">Marketing Specialist</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="role-error">Please select a role</div>
+                    </div>
+                    <div class="form-group" id="other-role-group" style="display: none;">
+                        <label for="other-role">Specify Role*</label>
+                        <input type="text" id="other-role" name="other-role">
+                        <div class="error-message" id="other-role-error">Please specify the role</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience*</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select experience</option>
+                            <option value="0-1">0-1 years</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                        <div class="error-message" id="experience-error">Please select your experience</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="degree">Academic Qualification*</label>
+                        <select id="degree" name="degree" required>
+                            <option value="">Select highest degree</option>
+                            <option value="high-school">High School</option>
+                            <option value="associate">Associate Degree</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="degree-error">Please select your highest degree</div>
+                    </div>
+                </div>
+
+                <!-- Skills Card -->
+                <div class="bento-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Skills</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="skill-input">Add Your Skills*</label>
+                        <div class="skill-input">
+                            <input type="text" id="skill-input" placeholder="e.g., JavaScript">
+                            <button type="button" class="add-skill-btn" id="add-skill-btn">Add</button>
+                        </div>
+                        <div class="error-message" id="skills-error">Please add at least one skill</div>
+                    </div>
+                    <div class="skills-container" id="skills-container"></div>
+                    <input type="hidden" id="skills" name="skills" required>
+                </div>
+
+                <!-- Past Companies Card -->
+                <div class="bento-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Past Companies</h2>
+                    </div>
+                    <div class="companies-container" id="companies-container"></div>
+                    <button type="button" class="add-company-btn" id="add-company-btn">+ Add Company</button>
+                    <input type="hidden" id="companies" name="companies">
+                </div>
+
+                <!-- Resume Upload Card -->
+                <div class="bento-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Resume Upload</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Upload Your Resume (PDF, DOC, DOCX)*</label>
+                        <div class="file-upload" id="file-upload-container">
+                            <div class="upload-icon">📄</div>
+                            <p>Drag & drop your resume or click to browse</p>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                            <div class="file-name" id="file-name"></div>
+                        </div>
+                        <div class="error-message" id="resume-error">Please upload your resume</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables
+            const form = document.getElementById('cv-form');
+            const skillInput = document.getElementById('skill-input');
+            const addSkillBtn = document.getElementById('add-skill-btn');
+            const skillsContainer = document.getElementById('skills-container');
+            const skillsHiddenInput = document.getElementById('skills');
+            const addCompanyBtn = document.getElementById('add-company-btn');
+            const companiesContainer = document.getElementById('companies-container');
+            const companiesHiddenInput = document.getElementById('companies');
+            const fileUpload = document.getElementById('resume');
+            const fileName = document.getElementById('file-name');
+            const roleSelect = document.getElementById('role');
+            const otherRoleGroup = document.getElementById('other-role-group');
+            
+            // Skills array
+            let skills = [];
+            let companies = [];
+
+            // Show "Other Role" field if "Other" is selected
+            roleSelect.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherRoleGroup.style.display = 'block';
+                    document.getElementById('other-role').setAttribute('required', 'required');
+                } else {
+                    otherRoleGroup.style.display = 'none';
+                    document.getElementById('other-role').removeAttribute('required');
+                }
+            });
+
+            // Add skill
+            addSkillBtn.addEventListener('click', function() {
+                addSkill();
+            });
+
+            // Add skill on Enter key
+            skillInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addSkill();
+                }
+            });
+
+            function addSkill() {
+                const skill = skillInput.value.trim();
+                if (skill && !skills.includes(skill)) {
+                    skills.push(skill);
+                    updateSkillsDisplay();
+                    skillInput.value = '';
+                    skillsHiddenInput.value = JSON.stringify(skills);
+                    document.getElementById('skills-error').style.display = 'none';
+                }
+            }
+
+            function updateSkillsDisplay() {
+                skillsContainer.innerHTML = '';
+                skills.forEach((skill, index) => {
+                    const skillTag = document.createElement('div');
+                    skillTag.className = 'skill-tag';
+                    skillTag.innerHTML = `
+                        ${skill}
+                        <button type="button" data-index="${index}">×</button>
+                    `;
+                    skillsContainer.appendChild(skillTag);
+                });
+
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.skill-tag button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        skills.splice(index, 1);
+                        updateSkillsDisplay();
+                        skillsHiddenInput.value = JSON.stringify(skills);
+                    });
+                });
+            }
+
+            // Add company
+            addCompanyBtn.addEventListener('click', function() {
+                const companyDiv = document.createElement('div');
+                companyDiv.className = 'past-company';
+                const companyId = Date.now();
+                companyDiv.innerHTML = `
+                    <div class="form-group">
+                        <label for="company-name-${companyId}">Company Name</label>
+                        <input type="text" id="company-name-${companyId}" class="company-name" placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="company-position-${companyId}">Position</label>
+                        <input type="text" id="company-position-${companyId}" class="company-position" placeholder="Your Position">
+                    </div>
+                    <div class="form-group">
+                        <label for="company-duration-${companyId}">Duration</label>
+                        <input type="text" id="company-duration-${companyId}" class="company-duration" placeholder="e.g., Jan 2020 - Dec 2022">
+                    </div>
+                    <button type="button" class="remove-company-btn" style="background: none; border: none; color: #e74c3c; cursor: pointer; margin-top: 0.5rem;">Remove</button>
+                `;
+                companiesContainer.appendChild(companyDiv);
+
+                // Add event listener to remove button
+                companyDiv.querySelector('.remove-company-btn').addEventListener('click', function() {
+                    companyDiv.remove();
+                    updateCompaniesData();
+                });
+
+                // Add event listeners to inputs
+                companyDiv.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('input', updateCompaniesData);
+                });
+            });
+
+            function updateCompaniesData() {
+                companies = [];
+                document.querySelectorAll('.past-company').forEach(companyDiv => {
+                    const name = companyDiv.querySelector('.company-name').value.trim();
+                    const position = companyDiv.querySelector('.company-position').value.trim();
+                    const duration = companyDiv.querySelector('.company-duration').value.trim();
+                    
+                    if (name || position || duration) {
+                        companies.push({ name, position, duration });
+                    }
+                });
+                companiesHiddenInput.value = JSON.stringify(companies);
+            }
+
+            // File upload
+            fileUpload.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileName.textContent = this.files[0].name;
+                    document.getElementById('resume-error').style.display = 'none';
+                } else {
+                    fileName.textContent = '';
+                }
+            });
+
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                // Validate name
+                const name = document.getElementById('name');
+                if (!name.value.trim()) {
+                    document.getElementById('name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('name-error').style.display = 'none';
+                }
+
+                // Validate email
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value.trim())) {
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('email-error').style.display = 'none';
+                }
+
+                // Validate phone
+                const phone = document.getElementById('phone');
+                if (!phone.value.trim()) {
+                    document.getElementById('phone-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('phone-error').style.display = 'none';
+                }
+
+                // Validate DOB
+                const dob = document.getElementById('dob');
+                if (!dob.value) {
+                    document.getElementById('dob-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('dob-error').style.display = 'none';
+                }
+
+                // Validate role
+                const role = document.getElementById('role');
+                if (!role.value) {
+                    document.getElementById('role-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('role-error').style.display = 'none';
+                }
+
+                // Validate other role if selected
+                if (role.value === 'other') {
+                    const otherRole = document.getElementById('other-role');
+                    if (!otherRole.value.trim()) {
+                        document.getElementById('other-role-error').style.display = 'block';
+                        isValid = false;
+                    } else {
+                        document.getElementById('other-role-error').style.display = 'none';
+                    }
+                }
+
+                // Validate experience
+                const experience = document.getElementById('experience');
+                if (!experience.value) {
+                    document.getElementById('experience-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('experience-error').style.display = 'none';
+                }
+
+                // Validate degree
+                const degree = document.getElementById('degree');
+                if (!degree.value) {
+                    document.getElementById('degree-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('degree-error').style.display = 'none';
+                }
+
+                // Validate skills
+                if (skills.length === 0) {
+                    document.getElementById('skills-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('skills-error').style.display = 'none';
+                }
+
+                // Validate resume
+                const resume = document.getElementById('resume');
+                if (resume.files.length === 0) {
+                    document.getElementById('resume-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('resume-error').style.display = 'none';
+                }
+
+                if (isValid) {
+                    // In a real application, you would submit the form data to a server
+                    alert('Form submitted successfully! In a real application, this would be sent to the server.');
+                    // form.submit();
+                }
+            });
+
+            // Initialize drag and drop for file upload
+            const fileUploadContainer = document.getElementById('file-upload-container');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                fileUploadContainer.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                fileUploadContainer.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                fileUploadContainer.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                fileUploadContainer.style.borderColor = '#E67E22';
+                fileUploadContainer.style.backgroundColor = 'rgba(230, 126, 34, 0.1)';
+            }
+
+            function unhighlight() {
+                fileUploadContainer.style.borderColor = '';
+                fileUploadContainer.style.backgroundColor = '';
+            }
+
+            fileUploadContainer.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                fileUpload.files = files;
+                
+                if (files.length > 0) {
+                    fileName.textContent = files[0].name;
+                    document.getElementById('resume-error').style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services|Filant consultancy</title>
+    <link rel="shortcut icon" href="./c-icon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #EFEAE3;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation styles from provided file */
+        nav {
+            padding: 4vw 0vw;
+            width: 100%;
+            height: 15vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+
+        nav img {
+            height: 90px;
+            width: auto;  
+        }
+
+        #nav-part2 {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        #nav-part2 h4 {
+            padding: 10px 20px;
+            border: 1px solid #0000003c;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #000000bb;
+            transition: all ease 0.4s;
+            position: relative;
+            font-size: 18px;
+            overflow: hidden;
+        }
+
+        #nav-part2 h4::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            left: 0;
+            bottom: -100%;
+            border-radius: 50%;
+            transition: all ease 0.4s;
+        }
+
+        #nav-part2 h4:hover::after {
+            bottom: 0;
+            border-radius: 0;
+        }
+
+        #nav-part2 h4 a {
+            color: #000000bb;
+            text-decoration: none;
+            position: relative;
+            z-index: 9;
+        }
+
+        #nav-part2 h4:hover a {
+            color: #fff;
+        }
+
+        nav h3 {
+            display: none;
+        }
+
+        /* Service page specific styles */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #FF7F00;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            height: 120px;
+            background-color: #FF7F00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FF7F00;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+        }
+
+        .service-content ul {
+            list-style-type: none;
+            margin-left: 10px;
+        }
+
+        .service-content ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-content ul li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #FF7F00;
+        }
+
+        .additional-services {
+            background-color: #fff;
+            padding: 80px 0;
+            margin-bottom: 80px;
+        }
+
+        .additional-services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #FF7F00;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #FF7F00;
+            color: white;
+            margin-bottom: 80px;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: #FF7F00;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #333;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #FF7F00;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            #nav-part2 {
+                display: none;
+            }
+            
+            nav h3 {
+                display: block;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="./index.html"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=984,h=656,fit=crop/YD066kjwLgu9x1P5/business-removebg-preview-AQEyWWDQeDhWxpL2.png" alt="logo"></a>
+        
+        <div id="nav-part2">
+            <h4><a href="./index.html">About</a></h4>
+            <h4><a href="#">Service</a></h4>
+            <h4><a href="./team.html">Team</a></h4>
+            <h4><a href="./contact.html">Contact</a></h4>
+            <h4><a href="./submitYourCv.html">Submit Your CV</a></h4>
+        </div>
+        <h3>Menu</h3>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our Talent Acquisition Services</h1>
+            <p>We provide comprehensive talent acquisition solutions tailored to your organization's unique needs. Our expertise spans across industries, helping you find the perfect talent to drive your business forward.</p>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="container">
+        <div class="services-container">
+            <!-- Job Providing Service -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Job Providing</h3>
+                    <p>We connect talented professionals with opportunities that match their skills, experience, and career aspirations.</p>
+                    <ul>
+                        <li>Permanent placements</li>
+                        <li>Contract staffing</li>
+                        <li>Temporary positions</li>
+                        <li>Remote work opportunities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Executive Search -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Executive Search</h3>
+                    <p>Our executive search service identifies and attracts top-tier leadership talent for critical roles in your organization.</p>
+                    <ul>
+                        <li>C-suite executives</li>
+                        <li>Board members</li>
+                        <li>Senior management</li>
+                        <li>Confidential searches</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- HR Services -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div class="service-content">
+                    <h3>HR Services</h3>
+                    <p>Comprehensive human resources solutions to optimize your workforce management and organizational effectiveness.</p>
+                    <ul>
+                        <li>HR consulting</li>
+                        <li>Policy development</li>
+                        <li>Performance management</li>
+                        <li>Employee engagement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Leadership Hiring -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Leadership Hiring</h3>
+                    <p>We identify and attract transformational leaders who can drive your organization's growth and success.</p>
+                    <ul>
+                        <li>Department heads</li>
+                        <li>Team leaders</li>
+                        <li>Project managers</li>
+                        <li>Leadership assessment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sales and Marketing -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Sales and Marketing</h3>
+                    <p>Build high-performing sales and marketing teams with professionals who can drive revenue and brand growth.</p>
+                    <ul>
+                        <li>Sales executives</li>
+                        <li>Marketing specialists</li>
+                        <li>Digital marketing experts</li>
+                        <li>Business development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IT and Technology -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="service-content">
+                    <h3>IT and Technology</h3>
+                    <p>Connect with top tech talent to drive innovation and digital transformation in your organization.</p>
+                    <ul>
+                        <li>Software developers</li>
+                        <li>IT infrastructure</li>
+                        <li>Data scientists</li>
+                        <li>Cybersecurity experts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services Section -->
+    <section class="additional-services">
+        <div class="container">
+            <h2>Additional Specialized Services</h2>
+            <div class="services-container">
+                <!-- Talent Mapping -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Talent Mapping</h3>
+                        <p>Strategic identification and analysis of talent pools to inform your long-term recruitment strategy.</p>
+                        <ul>
+                            <li>Market intelligence</li>
+                            <li>Competitor analysis</li>
+                            <li>Talent pool assessment</li>
+                            <li>Future talent planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recruitment Process Outsourcing -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Recruitment Process Outsourcing (RPO)</h3>
+                        <p>Outsource your entire recruitment function or specific components to our expert team.</p>
+                        <ul>
+                            <li>End-to-end recruitment</li>
+                            <li>Scalable solutions</li>
+                            <li>Cost-effective hiring</li>
+                            <li>Process optimization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Employer Branding -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Employer Branding</h3>
+                        <p>Develop and enhance your employer brand to attract and retain top talent in your industry.</p>
+                        <ul>
+                            <li>Brand strategy</li>
+                            <li>Candidate experience</li>
+                            <li>Employer value proposition</li>
+                            <li>Recruitment marketing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Compensation Consulting -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Compensation Consulting</h3>
+                        <p>Design competitive compensation packages to attract and retain the best talent in your market.</p>
+                        <ul>
+                            <li>Salary benchmarking</li>
+                            <li>Benefits analysis</li>
+                            <li>Incentive planning</li>
+                            <li>Total rewards strategy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Onboarding Services -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Onboarding Services</h3>
+                        <p>Streamline the integration of new hires to maximize productivity and retention.</p>
+                        <ul>
+                            <li>Onboarding programs</li>
+                            <li>New hire orientation</li>
+                            <li>Integration support</li>
+                            <li>Early engagement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Diversity & Inclusion -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Diversity & Inclusion Recruiting</h3>
+                        <p>Build diverse teams that drive innovation and better business outcomes through inclusive hiring practices.</p>
+                        <ul>
+                            <li>Diverse talent sourcing</li>
+                            <li>Inclusive job descriptions</li>
+                            <li>Bias-free selection</li>
+                            <li>D&I strategy development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Talent Acquisition?</h2>
+            <p>Partner with us to find the perfect talent for your organization. Our expert team is ready to develop a customized solution for your specific needs.</p>
+            <a href="./contact.html" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Filant Consultancy. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/krupesh-mahyavanshi-70122969/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/filant_consultancy" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>208, Parikh Commercial Center, Above ICICI Bank<br>
+            Agashi Road, Virar-West 401303<br>
+            info@filantconsultancy.com | 9987548007</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('nav h3').addEventListener('click', function() {
+            const navPart2 = document.getElementById('nav-part2');
+            if (navPart2.style.display === 'flex') {
+                navPart2.style.display = 'none';
+            } else {
+                navPart2.style.display = 'flex';
+                navPart2.style.flexDirection = 'column';
+                navPart2.style.position = 'absolute';
+                navPart2.style.top = '100%';
+                navPart2.style.right = '0';
+                navPart2.style.backgroundColor = '#EFEAE3';
+                navPart2.style.padding = '20px';
+                navPart2.style.width = '100%';
+            }
+        });
+
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

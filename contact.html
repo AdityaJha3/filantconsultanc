@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Filant Consultancy</title>
+    <link rel="shortcut icon" href="./c-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #EFEAE3;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation styles from provided file */
+        nav {
+            padding: 4vw 0vw;
+            width: 100%;
+            height: 15vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+
+        nav img {
+            height: 90px;
+            width: auto;  
+        }
+
+        #nav-part2 {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        #nav-part2 h4 {
+            padding: 10px 20px;
+            border: 1px solid #0000003c;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #000000bb;
+            transition: all ease 0.4s;
+            position: relative;
+            font-size: 18px;
+            overflow: hidden;
+        }
+
+        #nav-part2 h4::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            left: 0;
+            bottom: -100%;
+            border-radius: 50%;
+            transition: all ease 0.4s;
+        }
+
+        #nav-part2 h4:hover::after {
+            bottom: 0;
+            border-radius: 0;
+        }
+
+        #nav-part2 h4 a {
+            color: #000000bb;
+            text-decoration: none;
+            position: relative;
+            z-index: 9;
+        }
+
+        #nav-part2 h4:hover a {
+            color: #fff;
+        }
+
+        nav h3 {
+            display: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #FF7F00;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #FF7F00;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-card h3 i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+
+        .contact-card p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .contact-card a {
+            color: #FF7F00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #E67300;
+            text-decoration: underline;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #FF7F00;
+            box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.25);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #FF7F00;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #E67300;
+        }
+
+        /* Social Media */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #f4f4f4;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: #858381;
+            transform: translateY(-3px);
+        }
+
+        /* Map Container */
+        .map-container {
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+
+        .map-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #FF7F00;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #FF7F00;
+        }
+
+        /* QR Code styling */
+        .qr-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .qr-item {
+            text-align: center;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        /* Response message */
+        #responseMessage {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .sending {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            
+            #nav-part2 {
+                display: none;
+            }
+            
+            nav h3 {
+                display: block;
+                cursor: pointer;
+            }
+
+            .qr-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="./index.html"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=984,h=656,fit=crop/YD066kjwLgu9x1P5/business-removebg-preview-AQEyWWDQeDhWxpL2.png" alt="logo"></a>
+        
+        <div id="nav-part2">
+            <h4><a href="./index.html">About</a></h4>
+            <h4><a href="./service.html">Service</a></h4>
+            <h4><a href="./team.html">Team</a></h4>
+            <h4><a href="./contact.html">Contact</a></h4>
+            <h4><a href="./submitYourCv.html">Submit Your CV</a></h4>
+        </div>
+        <h3>Menu</h3>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help with any questions you may have about our services. Reach out to us using any of the methods below.</p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="container">
+        <div class="contact-section">
+            <!-- Contact Form -->
+            <div class="contact-card">
+                <h3><i class="fas fa-paper-plane"></i> Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" placeholder="What is this regarding?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div id="responseMessage"></div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-card">
+                <h3><i class="fas fa-info-circle"></i> Contact Information</h3>
+                
+                <p><strong>Phone:</strong></p>
+                <p>9987548007</p>
+                
+                <p><strong>Email:</strong></p>
+                <p><a href="mailto:info@filantconsultancy.com">info@filantconsultancy.com</a></p>
+                
+                <p><strong>Address:</strong></p>
+                <p>208, Parikh Commercial Center<br>Above ICICI Bank<br>Agashi Road<br>Virar-West 401303</p>
+                
+                <p><strong>Business Hours:</strong></p>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 2:00 PM<br>Sunday: Closed</p>
+                
+                <h3 style="margin-top: 30px;"><i class="fas fa-share-alt"></i> Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/krupesh-mahyavanshi-70122969/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/filant_consultancy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-container">
+            <h2>Find Us</h2>
+            <div class="map-frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60189.39499157786!2d72.77800865!3d19.462585249999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b3e0acb92caff25%3A0xa4defb3a80125d13!2sFilant%20Concultancy!5e0!3m2!1sen!2sin!4v1738960104326!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Filant Consultancy. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/krupesh-mahyavanshi-70122969/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/filant_consultancy" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>208, Parikh Commercial Center, Above ICICI Bank<br>
+            Agashi Road, Virar-West 401303<br>
+            info@filantconsultancy.com | 9987548007</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('nav h3').addEventListener('click', function() {
+            const navPart2 = document.getElementById('nav-part2');
+            if (navPart2.style.display === 'flex') {
+                navPart2.style.display = 'none';
+            } else {
+                navPart2.style.display = 'flex';
+                navPart2.style.flexDirection = 'column';
+                navPart2.style.position = 'absolute';
+                navPart2.style.top = '100%';
+                navPart2.style.right = '0';
+                navPart2.style.backgroundColor = '#EFEAE3';
+                navPart2.style.padding = '20px';
+                navPart2.style.width = '100%';
+            }
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.style.display = 'block';
+            responseMessage.className = 'sending';
+            responseMessage.textContent = 'Sending your message...';
+            
+            // Simulate form submission (replace with actual form submission)
+            setTimeout(function() {
+                const name = document.getElementById('name').value;
+                responseMessage.className = 'success';
+                responseMessage.textContent = `Thank you, ${name}! Your message has been sent successfully. We'll get back to you soon.`;
+                document.getElementById('contactForm').reset();
+            }, 1500);
+        });
+
+        // Animation for contact cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactCards = document.querySelectorAll('.contact-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            contactCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
