@@ -8,21 +8,1246 @@
     <link rel="shortcut icon" href="./c-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: neu;
+            src: url(./NeueHaasDisplayMediu.ttf);
+        }
+
+        @font-face {
+            font-family: neu;
+            font-weight: 100;
+            src: url(./NeueHaasDisplayLight.ttf);
+        }
+
+        @font-face {
+            font-family: neu;
+            font-weight: 200;
+            src: url(./NeueHaasDisplayRoman.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: neu;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #main {
+            position: relative;
+            z-index: 10;
+        }
+
+        #page1 {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #EFEAE3;
+            position: relative;
+            padding: 0 2vw;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        nav {
+            padding: 2vw 0vw;
+            width: 100%;
+            height: 15vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+
+        nav img {
+            height: 90px;
+            width: auto;  
+        }
+
+        #nav-part2 {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        #nav-part2 h4 {
+            padding: 10px 20px;
+            border: 1px solid #0000003c;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #000000bb;
+            transition: all ease 0.4s;
+            position: relative;
+            font-size: 18px;
+            overflow: hidden;
+        }
+
+        #nav-part2 h4::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            left: 0;
+            bottom: -100%;
+            border-radius: 50%;
+            transition: all ease 0.4s;
+        }
+
+        #nav-part2 h4:hover::after {
+            bottom: 0;
+            border-radius: 0;
+        }
+
+        #nav-part2 h4 a {
+            color: #000000bb;
+            text-decoration: none;
+            position: relative;
+            z-index: 9;
+        }
+
+        #nav-part2 h4:hover a {
+            color: #fff;
+        }
+
+        nav h3 {
+            display: none;
+        }
+
+        #center {
+            height: 65vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border-bottom: 1px solid #0000003c; */
+            padding-bottom: 2.5vw;
+            position: relative;
+            z-index: 1;
+        }
+
+        #left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        #center h1 {
+            font-size: 6vw; /* Decreased font size */
+            text-align: center;
+            line-height: 6vw;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #F17C00, #F17C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        #center p {
+            font-size: 1.5vw;
+            text-align: center;
+            line-height: 2vw;
+            text-transform: uppercase;
+            font-weight: 200;
+            color: #ec2a03;
+            margin-bottom: 15px;
+        }
+
+        .company-description {
+            margin: 20px 0;
+        }
+
+        .company-description p {
+            font-size: 1.2vw;
+            line-height: 1.8vw;
+            color: #333;
+            text-transform: none;
+            margin-bottom: 10px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #F17C00, #ec2a03);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2vw;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(241, 124, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(241, 124, 0, 0.4);
+        }
+
+        .highlight-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+    /* border-left: 5px solid #F17C00; */
+    padding: 15px 20px;
+    margin: 25px 0 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    animation: pulse 2s infinite;
+}
+
+.highlight-box h3 {
+    font-size: 1.8vw;
+    font-weight: 600;
+    color: #F17C00;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    margin: 0;
+    padding-left: 3.4vw;
+}
+
+.highlight-icon {
+    margin-right: 15px;
+    background: linear-gradient(45deg, #F17C00, #ec2a03);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(241, 124, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(241, 124, 0, 0.4);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(241, 124, 0, 0.2);
+    }
+}
+
+/* Update responsive styles for the highlight box */
+@media (max-width:600px) {
+    .highlight-box h3 {
+        font-size: 4.5vw;
+        line-height: 6vw;
+    }
+    
+    .highlight-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .highlight-box {
+        padding: 12px 15px;
+        margin: 20px 0 12px;
+    }
+}
+
+        #hero-shape {
+            position: absolute;
+            width: 40vw;
+            height: 36vw;
+            left: 0;
+            top: 82vh;
+            z-index: 1;
+        }
+
+        #hero-shape1 {
+            position: absolute;
+            width: 40vw;
+            height: 36vw;
+            right: 0;
+            top: 150vh;
+            z-index: 1;
+        }
+
+        #hero-1 {
+            background-color: #FE320A;
+            height: 100%;
+            width: 100%;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            filter: blur(10px);
+            position: absolute;
+        }
+
+        #hero-2 {
+            background: linear-gradient(#FE320A, #fe3f0a);
+            height: 30vw;
+            width: 30vw;
+            border-radius: 50%;
+            position: absolute;
+            animation-name: anime2;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            filter: blur(25px);
+        }
+
+        #hero-3 {
+            background: linear-gradient(#FE320A, #fe3f0a);
+            height: 30vw;
+            position: absolute;
+            width: 30vw;
+            border-radius: 50%;
+            filter: blur(25px);
+            animation-name: anime1;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        #hero-4 {
+            background: linear-gradient(#FE320A, #fe3f0a);
+            height: 30vw;
+            width: 30vw;
+            right: 20%;
+            border-radius: 50%;
+            position: absolute;
+            animation-name: anime2;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            filter: blur(25px);
+        }
+
+        #hero-5 {
+            background: linear-gradient(#FE320A, #fe3f0a);
+            height: 30vw;
+            position: absolute;
+            right: 50%;
+            width: 30vw;
+            border-radius: 50%;
+            filter: blur(25px);
+            animation-name: anime1;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes anime1 {
+            from {
+                transform: translate(55%, -3%);
+            }
+
+            to {
+                transform: translate(0%, 10%);
+            }
+        }
+
+        @keyframes anime2 {
+            from {
+                transform: translate(-20%, -5%);
+            }
+
+            to {
+                transform: translate(20%, 10%);
+            }
+        }
+
+        /* Keep all existing styles */
+        
+        /* Updated styles for page 2 */
+        #page2 {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #EFEAE3;
+            padding: 4vw 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #moving-text {
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 2vw;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+        }
+
+        #moving-text::-webkit-scrollbar {
+            display: none;
+        }
+
+        .con {
+            white-space: nowrap;
+            display: inline-block;
+            animation-name: move;
+            animation-duration: 30s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        #moving-text h1 {
+            font-size: 5vw; /* Reduced size */
+            display: inline-block;
+            color: #333;
+            opacity: 0.7;
+        }
+
+        #gola {
+            height: 40px; /* Reduced size */
+            width: 40px; /* Reduced size */
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #FE320A;
+            margin: 0.5vw 1vw;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .page2-content {
+            display: flex;
+            flex-direction: column;
+            padding: 2vw 5vw;
+            position: relative;
+            z-index: 9;
+        }
+
+        .section-title {
+            font-size: 3vw;
+            font-weight: 600;
+            color: #F17C00;
+            margin-bottom: 2vw;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #F17C00, #ec2a03);
+            border-radius: 2px;
+        }
+
+        .who-we-are {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5vw;
+            flex-wrap: wrap;
+        }
+
+        .who-we-are-text {
+            width: 60%;
+            padding-right: 3vw;
+        }
+
+        .who-we-are-text p {
+            font-size: 1.2vw;
+            line-height: 2vw;
+            color: #333;
+            margin-bottom: 1.5vw;
+        }
+
+        .who-we-are-image {
+            width: 35%;
+            position: relative;
+        }
+
+        .who-we-are-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(241, 124, 0, 0.2);
+        }
+
+        .what-we-do {
+            margin-top: 2vw;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
+            margin-top: 2vw;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+            border-radius: 15px;
+            padding: 2vw;
+            transition: all 0.3s ease;
+            border-left: 3px solid #F17C00;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(241, 124, 0, 0.2);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #F17C00, #ec2a03);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5vw;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5vw;
+            margin-bottom: 1vw;
+            color: #333;
+        }
+
+        .service-card p {
+            font-size: 1vw;
+            line-height: 1.6vw;
+            color: #555;
+        }
+
+        #page2 #gooey {
+            height: 32vw;
+            width: 32vw;
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(to top right, #ff2d03, #ff5c0b);
+            bottom: -10%;
+            right: -5%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation-name: gooey;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+
+        #page2 #gooey2 {
+            height: 25vw;
+            width: 25vw;
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(to top right, #ff2d03, #ff5c0b);
+            top: 20%;
+            left: -10%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation-name: gooey2;
+            animation-duration: 12s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes gooey {
+            from {
+                filter: blur(80px);
+                transform: translate(0%, 0%) scale(1);
+            }
+            to {
+                filter: blur(100px);
+                transform: translate(-5%, -5%) scale(1.1);
+            }
+        }
+
+        @keyframes gooey2 {
+            from {
+                filter: blur(80px);
+                transform: translate(0%, 0%) scale(1);
+            }
+            to {
+                filter: blur(100px);
+                transform: translate(5%, 5%) scale(1.1);
+            }
+        }
+
+        /* Responsive styles for page 2 */
+        @media (max-width: 900px) {
+            .who-we-are-text, .who-we-are-image {
+                width: 100%;
+            }
+            
+            .who-we-are-text {
+                padding-right: 0;
+                margin-bottom: 4vw;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title {
+                font-size: 5vw;
+            }
+            
+            .who-we-are-text p {
+                font-size: 2vw;
+                line-height: 3vw;
+            }
+            
+            .service-card h3 {
+                font-size: 2.5vw;
+            }
+            
+            .service-card p {
+                font-size: 1.8vw;
+                line-height: 2.5vw;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            #moving-text h1 {
+                font-size: 8vw;
+            }
+            
+            #gola {
+                height: 25px;
+                width: 25px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 4vw;
+            }
+            
+            .section-title {
+                font-size: 7vw;
+            }
+            
+            .who-we-are-text p {
+                font-size: 4vw;
+                line-height: 6vw;
+            }
+            
+            .service-card h3 {
+                font-size: 5vw;
+            }
+            
+            .service-card p {
+                font-size: 3.5vw;
+                line-height: 5vw;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        #page3 {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #EFEAE3;
+            padding: 4vw 0;
+        }
+
+        #headiing {
+            font-size: 3vw;
+            display: flex;
+            line-height: 4vw;
+            font-weight: 200;
+            color: #000000;
+        }
+
+        #headiing h1{
+            border-bottom: 2px solid #0000003c;
+            padding-bottom: 1vw;
+            z-index: 99;
+        }
+
+        .elem {
+            height: 150px;
+            width: 100%;
+            position: relative;
+            border-bottom: 1px solid #38383864;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 2vw;
+        }
+
+        .elem h2 {
+            font-size: 3vw;
+            position: relative;
+            z-index: 9;
+        }
+
+        .elem .overlay {
+            height: 100%;
+            width: 100%;
+            background-color: orange;
+            position: absolute;
+            left: 0;
+            top: -100%;
+            transition: all ease 0.25s;
+        }
+
+        .elem:hover .overlay {
+            top: 0;
+        }
+
+        #fixed-image {
+            height: 30vw;
+            width: 24vw;
+            border-radius: 15px;
+            position: fixed;
+            z-index: 99;
+            left: 50%;
+            top: 25%;
+            display: none;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Add these responsive styles for page 3 */
+@media (max-width: 1200px) {
+    #headiing {
+        font-size: 2.5vw;
+        line-height: 3.5vw;
+    }
+    
+    .elem {
+        height: 130px;
+    }
+    
+    .elem h2 {
+        font-size: 2.5vw;
+    }
+    
+    #fixed-image {
+        height: 35vw;
+        width: 28vw;
+    }
+}
+
+@media (max-width: 900px) {
+    #headiing {
+        font-size: 3.5vw;
+        line-height: 4.5vw;
+        padding: 0 2vw;
+    }
+    
+    .elem {
+        height: 110px;
+    }
+    
+    .elem h2 {
+        font-size: 3.5vw;
+    }
+    
+    #fixed-image {
+        height: 40vw;
+        width: 32vw;
+        top: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+    #page3 {
+        padding: 8vw 2vw;
+    }
+    
+    #headiing {
+        font-size: 5vw;
+        line-height: 6vw;
+    }
+    
+    .elem {
+        height: 80px;
+        padding: 0 4vw;
+    }
+    
+    .elem h2 {
+        font-size: 4.5vw;
+    }
+    
+    #fixed-image {
+        height: 50vw;
+        width: 70vw;
+        left: 15%;
+        top: auto;
+        bottom: 20%;
+        border-radius: 10px;
+    }
+}
+
+        #page4 {
+            height: 70vh;
+            width: 100%;
+            background-color: #EFEAE3;
+            padding: 10vw 2vw;
+        }
+
+        #page4 h1 {
+            display: flex;
+            font-size: 4.5vw;
+            line-height: 4vw;
+            font-weight: 20;
+            color: #000000;
+            margin-bottom: 2vw;
+            border-bottom: 1px solid #0000003c;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            width: 30%;
+            border-left: 1px solid #aeadad;
+            padding: 0 2vw;
+        }
+
+        /* Add styles for the swiper pagination */
+.swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: #F17C00;
+}
+
+@media (max-width: 600px) {
+    .swiper-pagination {
+        margin-top: 15px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+        /* Add these responsive styles for page 4 */
+@media (max-width: 1200px) {
+    #page4 h1 {
+        font-size: 3.5vw;
+        line-height: 3.5vw;
+    }
+    
+    .swiper-slide {
+        width: 45%;
+    }
+    
+    .cmpLogo h2 {
+        font-size: 2.5vw;
+    }
+    
+    .testimonial p {
+        font-size: 1.2vw;
+        line-height: 1.8vw;
+    }
+}
+
+@media (max-width: 900px) {
+    #page4 {
+        padding: 8vw 2vw;
+        height: auto;
+        min-height: 70vh;
+    }
+    
+    #page4 h1 {
+        font-size: 4vw;
+        line-height: 4vw;
+    }
+    
+    .swiper-slide {
+        width: 70%;
+    }
+    
+    .cmpLogo h2 {
+        font-size: 3vw;
+    }
+    
+    .testimonial p {
+        font-size: 1.8vw;
+        line-height: 2.5vw;
+    }
+}
+
+@media (max-width: 600px) {
+    #page4 {
+        padding: 10vw 4vw;
+    }
+    
+    #page4 h1 {
+        font-size: 5.5vw;
+        line-height: 5.5vw;
+    }
+    
+    .swiper-slide {
+        width: 100%;
+        padding: 0 3vw;
+    }
+    
+    .cmpLogo h2 {
+        font-size: 5vw;
+    }
+    
+    .testimonial p {
+        font-size: 3.5vw;
+        line-height: 5vw;
+    }
+}
+
+        #page5 {
+            height: 100vh;
+            width: 100%;
+            
+        }
+
+        #footer {
+            position: fixed;
+            height: 105vh;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            z-index: 9;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: column;
+            padding: 1vw 3vw;
+        }
+
+        #footer h1 {
+            font-size: 20vw;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        #footer-div {
+            height: 20vh;
+            width: 100%;
+            background-color: red;
+            filter: blur(10px);
+        }
+
+        #footer-bottom {
+            border-top: 1px solid #dadada;
+            height: auto;
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-content {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 1rem;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .footer-left p, .footer-center a, .footer-right p {
+            margin: 5px 0;
+            color: #dadada;
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-center a {
+            color: #dadada;
+            text-decoration: none;
+            margin: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-center a:hover {
+            color: #fff;
+        }
+
+        .footer-right {
+            text-align: center;
+        }
+
+        .footer-right a {
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .footer-right img {
+            width: 30px;
+            height: 30px;
+            filter: invert(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-right img:hover {
+            transform: scale(1.1);
+        }
+
+        #loader{
+            height: 100%;
+            width: 100%;
+            background-color: #EFEAE3;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            transition: all ease 0.7s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loader h1{
+            font-size: 4vw;
+            color: transparent;
+            background: linear-gradient(to right,orange,orangered);
+            -webkit-background-clip: text;
+            position: absolute;
+            opacity: 0;
+            animation-name: load;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-timing-function: linear;
+        }
+        #loader h1:nth-child(2){
+            animation-delay: 2s;
+        }
+        #loader h1:nth-child(3){
+            animation-delay: 3s;
+        }
+
+        @keyframes load {
+            0%{
+                opacity: 0;
+            }
+            10%{
+                opacity: 1;
+            }
+            90%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width:600px) {
+            #loader h1{
+                font-size: 9vw;
+            }
+
+            #page1 {
+                min-height: 100vh;
+                width: 100vw;
+                padding: 0 0vw;
+            }
+
+            nav {
+                padding: 8vw 5vw;
+                background-color: #EFEAE3;
+            }
+
+            nav img {
+                transition: all ease 0.2s;
+                height: 9vh;
+            }
+
+            #nav-part2 {
+                display: none;
+            }
+
+            nav h3 {
+                display: block;
+                padding: 3vw 5vw;
+                border: 1px solid #ababab;
+                border-radius: 50px;
+                font-size: 4vw;
+                font-weight: 200;
+                padding-left: 10vw;
+            }
+
+            #center {
+                height: 62vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-bottom: 1px solid #0000003c;
+                padding: 7vw 5vw;
+                padding-bottom: 10vw;
+                flex-direction: column;
+                position: relative;
+                z-index: 9;
+            }
+
+            #center h1 {
+                font-size: 8vw;
+                text-align: center;
+                line-height: 10vw;
+                margin-bottom: 15px;
+            }
+
+            #center p {
+                font-size: 4vw;
+                line-height: 5vw;
+            }
+
+            .company-description p {
+                font-size: 3.5vw;
+                line-height: 5vw;
+                margin-bottom: 8px;
+            }
+
+            .contact-btn {
+                padding: 12px 30px;
+                font-size: 3.5vw;
+                margin-top: 15px;
+            }
+
+            #page2-bottom {
+                height: auto;
+                padding: 10vw 4vw;
+                flex-direction: column;
+            }
+
+            #page2-bottom h2 {
+                font-size: 4vw;
+                width: 100%;
+                line-height: 6vw;
+                margin-bottom: 20px;
+            }
+
+            #bottom-part2 {
+                width: 70%;
+            }
+
+            #bottom-part2 p {
+                font-size: 3vw;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .footer-left, .footer-center, .footer-right {
+                width: 100%;
+            }
+        }
+
+        /* Mobile menu styles */
+        #mobile-menu {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #EFEAE3;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: top 0.5s ease;
+        }
+
+        #mobile-menu #nav-part2 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #full-scr {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #EFEAE3;
+            z-index: 98;
+            transition: top 0.5s ease;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Keep the loader and fixed-image divs -->
+    <!-- TESTING IT BAAKA-->
     <div id="loader">
         <h1>JOBS</h1>
         <h1>RECRUITMENT</h1>
         <h1>CAREER</h1>
     </div>
-    <div id="fixed-image">
-
-    </div>
+    <div id="fixed-image"></div>
+    
     <div id="main">
-
+        <!-- Keep page1 unchanged -->
         <div id="page1">
+            <div class="hero-background"></div>
             <nav>
                 <a href="./index.html"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=984,h=656,fit=crop/YD066kjwLgu9x1P5/business-removebg-preview-AQEyWWDQeDhWxpL2.png" alt="logo"></a>
                 
@@ -37,15 +1262,19 @@
             </nav>
             <div id="center">
                 <div id="left">
-                    <h1>FILANT CONSULTANCY LLP</h1>
+                    <h1>FILANT CONSULTANCY</h1>
                     <p>Transforming productivity through innovative recruitment and staffing services</p>
+                    <div class="company-description">
+    <div class="highlight-box">
+        <!-- <div class="highlight-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> -->
+        <!-- </div> --> 
+        <h3>Providing Jobs Opportunity in Germany and India</h3>
+    </div>
+    <p>Connecting talent with the right career paths globally</p>
+</div>
+                    <a href="./contact.html" class="contact-btn">Contact Us</a>
                 </div>
-                <!-- <div id="right">
-                    <h1>SPACES <br>
-                        THAT <br>
-                        INSPIRE</h1>
-                </div> -->
-
             </div>
             <div id="hero-shape">
                 <div id="hero-1"></div>
@@ -57,8 +1286,9 @@
                 <div id="hero-2"></div>
                 <div id="hero-3"></div>
             </div>
-            <img src="./assets/d3a8bfd4f62647d6f26875b9f7a97ab5.jpg" alt="sffe">
         </div>
+        
+        <!-- Updated page2 -->
         <div id="page2">
             <div id="moving-text">
                 <div class="con">
@@ -85,96 +1315,142 @@
                     <h1>RETAILS</h1>
                     <div id="gola"></div>
                 </div>
-                <div class="con">
-                    <h1>PHARMA</h1>
-                    <div id="gola"></div>
-                    <h1>FINANCIAL SERVICE</h1>
-                    <div id="gola"></div>
-                    <h1>HEALTHCARE</h1>
-                    <div id="gola"></div>
-                    <h1>HIGHER STUDIES</h1>
-                    <div id="gola"></div>
-                    <h1>RETAILS</h1>
-                    <div id="gola"></div>
+            </div>
+            
+            <div class="page2-content">
+                <div class="who-we-are">
+                    <div class="who-we-are-text">
+                        <h2 class="section-title">Who We Are</h2>
+                        <p>Filant Consultancy is a premier recruitment and staffing agency with a strong presence in both India and Germany. Founded with a vision to bridge the talent gap across borders, we have established ourselves as trusted partners for businesses seeking qualified professionals and job seekers looking for rewarding career opportunities.</p>
+                        <p>Our team consists of experienced recruitment specialists with deep industry knowledge across sectors including IT, healthcare, finance, and manufacturing. We understand the unique challenges of cross-border recruitment and have developed specialized processes to ensure successful placements.</p>
+                        <p>With offices strategically located in India and Germany, we offer a comprehensive suite of recruitment services tailored to meet the specific needs of our clients and candidates. Our commitment to excellence and ethical practices has earned us a reputation for reliability and results.</p>
+                    </div>
+                    <div class="who-we-are-image">
+                        <img src="./assets/image.jpg" alt="Filant Consultancy Team">
+                    </div>
+                </div>
+                
+                <div class="what-we-do">
+                    <h2 class="section-title">What We Do</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            </div>
+                            <h3>Recruitment Services</h3>
+                            <p>We provide end-to-end recruitment solutions for businesses of all sizes, helping them find the right talent for permanent, contract, and temporary positions across various industries.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <h3>Career Counseling</h3>
+                            <p>Our expert career counselors guide job seekers through every step of their professional journey, from resume building and interview preparation to salary negotiation and onboarding.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <h3>Ausbildung Program</h3>
+                            <p>Our signature program helps Indian candidates build successful careers in Germany through a unique learn-and-earn pathway, leading to long-term career growth and PR opportunities.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                            </div>
+                            <h3>HR Consulting</h3>
+                            <p>We offer strategic HR consulting services to help businesses optimize their workforce, improve retention, and develop effective talent acquisition strategies.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+                            </div>
+                            <h3>International Placement</h3>
+                            <p>Specializing in cross-border recruitment, we connect talented professionals with international job opportunities, handling visa requirements, relocation assistance, and cultural integration.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3>Executive Search</h3>
+                            <p>Our executive search team identifies and recruits top-tier leadership talent for senior management and C-suite positions, using our extensive network and industry expertise.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="page2-bottom">
-                <h2>Filant Consultancy connects talent with opportunities, both in India and internationally. We specialize in recruitment across industries like IT, banking, and insurance while also helping Indian candidates build careers in Germany through our "Ausbildung" program—a unique learn-and-earn pathway leading to long-term career growth and PR opportunities.
-
-                    With a strong network and deep industry expertise, we’re committed to empowering both businesses and job seekers for a successful future.
-                    
-                    Let’s grow together!</h2>
-                <div id="bottom-part2">
-                    <img src="https://uploads-ssl.webflow.com/64d3dd9edfb41666c35b15b7/64d3dd9edfb41666c35b15d1_Holding_thumb-p-500.jpg"
-                        alt="">
-                    <p>At Filant Consultancy, our mission is to connect talent with the right opportunities—both in India and abroad. Whether you're a job seeker looking for career growth or a business in need of top talent, we are here to make the process seamless and successful.
-
-                        Your success is our priority, and we are committed to guiding you every step of the way.
-                        <br>
-                        Let’s build a brighter future together!
-                        
-                        </p>
-                </div>
-            </div>
-            <div id="gooey">
-
-            </div>
+            
+            <div id="gooey"></div>
+            <div id="gooey2"></div>
         </div>
+        
+        <!-- Keep the rest of the pages unchanged -->
         <div id="page3">
-            <div id="headiing"><h1>OUR SERVICES</h1></div>
+            <div id="headiing"><h1> For Candidates</h1></div>
             <div id="elem-container">
                 <div id="elem1" class="elem"
-                    data-image="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    data-image="https://images.unsplash.com/photo-1698047681432-006d2449c631?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                     <div class="overlay"></div>
-                    <h2>Sales & Marketing</h2>
+                    <h2>1. Submit Your Resume</h2>
+                </div>
+                <div class="elem"
+                    data-image="https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>2. Deep Profile Analysis</h2>
+                </div>
+                <div class="elem"
+                    data-image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>3. Skill & Role Matching</h2>
+                </div>
+                <div class="elem"
+                    data-image="https://images.unsplash.com/photo-1698047681452-08eba22d0c64?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <div class="overlay"></div>
+                    <h2>4. Personalized Career Guidance</h2>
                 </div>
                 <div class="elem"
                     data-image="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                     <div class="overlay"></div>
-                    <h2>HR Services</h2>
+                    <h2>5. Direct Client Interviews</h2>
                 </div>
                 <div class="elem"
-                    data-image="https://images.unsplash.com/photo-1521898284481-a5ec348cb555?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    data-image="https://images.unsplash.com/photo-1686771416282-3888ddaf249b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                     <div class="overlay"></div>
-                    <h2>Customer Support</h2>
-                </div>
-                <div class="elem"
-                    data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyc2l0eXxlbnwwfHwwfHx8MA%3D%3D">
-                    <div class="overlay"></div>
-                    <h2>International Studies</h2>
-                </div>
-                <div class="elem"
-                    data-image="https://images.unsplash.com/photo-1618259278412-2819cbdea4dc?q=80&w=2021&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                    <div class="overlay"></div>
-                    <h2>Abroad Jobs</h2>
-                </div>
-                <div class="elem"
-                    data-image="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                    <div class="overlay"></div>
-                    <h2>Back-Office Executives</h2>
-                </div>
-                <div class="elem"
-                    data-image="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmluYW5jaWFsJTIwc2VydmljZXxlbnwwfHwwfHx8MA%3D%3D">
-                    <div class="overlay"></div>
-                    <h2>Finance & IT services</h2>
+                    <h2>6. You’re Hired!🚀</h2>
                 </div>
             </div>
         </div>
+        
         <div id="page4">
-            <div><h1>OUR PARTNERS</h1></div>
+            <div><h1>OUR CLIENTS</h1></div>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="cmpLogo"><h2>Aditya Birla Health Insurance</h2></div>
+                        <div class="testimonial"><p>"At Aditya Birla Insurance, one of India's premier insurance companies, Filant Consultancy LLP is proud to provide top-tier talent for their ever-expanding workforce. Our recruitment team specializes in identifying and placing qualified professionals for roles in underwriting, sales, claims, and customer service. We support Aditya Birla Insurance's commitment to delivering exceptional financial services, ensuring they have the right people to drive their business forward."</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="cmpLogo"><h2>TATA AIG</h2></div>
+                        <div class="testimonial"><p>"Partnering with Tata AIG, we offer specialized manpower solutions tailored for the insurance and financial services sector. Our dedicated staffing support enhances Tata AIG’s ability to deliver superior customer service, risk management, and back-office operations. By aligning talent with their core values of trust and security, we help Tata AIG maintain their industry leadership."</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="cmpLogo"><h2>HBD FINANCE</h2></div>
+                        <div class="testimonial"><p>"In partnership with HDB Finance, we provide focused manpower solutions that support their financial services and customer outreach initiatives. Our staffing services contribute to HDB’s operational excellence in areas such as loan processing, collections, and customer service. We align our talent pool with HDB’s goal of delivering financial solutions with integrity and efficiency."</p></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="cmpLogo"><h2>EPICENTER</h2></div>
+                        <div class="testimonial"><p>"Working alongside Epicenter, we deliver comprehensive manpower solutions that cater to the BPO and customer experience sectors. Our team provides trained professionals adept in communication, customer handling, and back-office support. This partnership enables Epicenter to scale their operations while maintaining service quality and turnaround times."</p></div>
+                    </div>
                     <div class="swiper-slide">
                         <div class="cmpLogo"><h2>Athena BPO</h2></div>
                         <div class="testimonial"><p>"Filant Consultancy LLP partners with Athena BPO, a leading player in the Business Process Outsourcing industry. With a diverse range of openings across various domains, we supply highly skilled manpower to meet the growing demands of their client base. Our recruitment solutions ensure that Athena BPO receives the best candidates for roles in customer service, operations, technical support, and more. As their trusted recruitment partner, we aim to help Athena BPO maintain its operational excellence and service quality."</p></div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="cmpLogo"><h2>Aditya Birla Health Insurance</h2></div>
-                        <div class="testimonial"><p>"At Aditya Birla Insurance, one of India’s premier insurance companies, Filant Consultancy LLP is proud to provide top-tier talent for their ever-expanding workforce. Our recruitment team specializes in identifying and placing qualified professionals for roles in underwriting, sales, claims, and customer service. We support Aditya Birla Insurance’s commitment to delivering exceptional financial services, ensuring they have the right people to drive their business forward."</p></div>
+                        <div class="cmpLogo"><h2>ADITYA BIRLA</h2></div>
+                        <div class="testimonial"><p>"Our collaboration with Aditya Birla empowers us to provide robust manpower and staffing solutions across their diverse business verticals. Through this engagement, we ensure the delivery of skilled professionals who contribute to operational efficiency, innovation, and customer satisfaction. From administrative roles to field operations, our workforce solutions align seamlessly with Aditya Birla’s standards of excellence and business growth."</p></div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cmpLogo"><h2>FLORET PHARMA</h2></div>
-                        <div class="testimonial"><p>Our partnership with Floret Pharma enables us to deliver specialized manpower solutions in the pharmaceutical sector. Through this collaboration, we supply a qualified and dedicated workforce that supports Floret Pharma’s mission of innovation and patient care. From research and development to quality control and administrative roles, our talent solutions help Floret Pharma meet industry standards and regulatory requirements with ease.</p></div>
+                        <div class="testimonial"><p>Our partnership with Floret Pharma enables us to deliver specialized manpower solutions in the pharmaceutical sector. Through this collaboration, we supply a qualified and dedicated workforce that supports Floret Pharma's mission of innovation and patient care. From research and development to quality control and administrative roles, our talent solutions help Floret Pharma meet industry standards and regulatory requirements with ease.</p></div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cmpLogo"><h2>Call2Connect –BPO</h2></div>
@@ -182,34 +1458,35 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="cmpLogo"><h2>Pacesetter</h2></div>
-                        <div class="testimonial"><p>"Filant Consultancy LLP is proud to partner with Pacesetter, a prominent Domestic  BPO known for its excellence in delivering customer support services across various global markets. We provide Pacesetter with skilled and reliable professionals who are adept at handling customer inquiries, technical support, and client relations. Our recruitment solutions are tailored to meet Pacesetter’s specific staffing requirements, ensuring they have a dedicated, efficient team to maintain high service standards and drive their Domestic success."</p></div>
+                        <div class="testimonial"><p>"Filant Consultancy LLP is proud to partner with Pacesetter, a prominent Domestic  BPO known for its excellence in delivering customer support services across various global markets. We provide Pacesetter with skilled and reliable professionals who are adept at handling customer inquiries, technical support, and client relations. Our recruitment solutions are tailored to meet Pacesetter's specific staffing requirements, ensuring they have a dedicated, efficient team to maintain high service standards and drive their Domestic success."</p></div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cmpLogo"><h2>Shift Task</h2></div>
-                        <div class="testimonial"><p>Shift Task is an international BPO that specializes in delivering exceptional customer support services worldwide. Filant Consultancy LLP plays a crucial role in helping Swift Task recruit top talent for customer service roles, including support agents, technical assistance staff, and customer care managers. We focus on sourcing highly skilled professionals who can thrive in a fast-paced, global environment, supporting Swift Task’s mission to provide seamless customer experiences and client satisfaction."</p></div>
+                        <div class="testimonial"><p>Shift Task is an international BPO that specializes in delivering exceptional customer support services worldwide. Filant Consultancy LLP plays a crucial role in helping Swift Task recruit top talent for customer service roles, including support agents, technical assistance staff, and customer care managers. We focus on sourcing highly skilled professionals who can thrive in a fast-paced, global environment, supporting Swift Task's mission to provide seamless customer experiences and client satisfaction."</p></div>
                     </div>
                 </div>
-
+                <div class="swiper-pagination"></div>
             </div>
         </div>
+        
         <div id="page5">
 
         </div>
+        
         <div id="full-scr">
-            <div id="full-div1">
-                
-            </div>
+            <div id="full-div1"></div>
         </div>
     </div>
+    
     <div id="footer">
         <h1>FILANT</h1>
         <div id="footer-bottom">
             <div class="footer-content">
                 <div class="footer-left">
-                    <p>© 2024 FILANT. All Rights Reserved.</p>
+                    <p>© 2023 FILANT. All Rights Reserved.</p>
                     <p><strong>Address:</strong> 208, Parikh Commercial Center Above ICICI Bank Agashi Road Virar-West 401303.</p>
                     <p><strong>Phone:</strong> +91 9987548007</p>
-                    <p><strong>Email:</strong> info@filantconsultancy.com</p>
+                    <p><strong>Email:</strong>info@filantconsultancy.com</p>
                 </div>
                 <div class="footer-center">
                     <a href="#">Privacy Policy</a>
@@ -232,9 +1509,178 @@
         </div>
     </div>
     
+    <!-- Keep all scripts unchanged -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Initialize Locomotive Scroll
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('#main'),
+            smooth: true
+        });
+
+        function page4Animation() {
+            var elemC = document.querySelector("#elem-container")
+            var fixed = document.querySelector("#fixed-image")
+            elemC.addEventListener("mouseenter", function () {
+                fixed.style.display = "block"
+            })
+            elemC.addEventListener("mouseleave", function () {
+                fixed.style.display = "none"
+            })
+
+            var elems = document.querySelectorAll(".elem")
+            elems.forEach(function (e) {
+                e.addEventListener("mouseenter", function () {
+                    var image = e.getAttribute("data-image")
+                    fixed.style.backgroundImage = `url(${image})`
+                })
+            })
+        }
+
+        // Update the swiper initialization to ensure it works properly on all devices
+        function swiperAnimation() {
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: "auto",
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                  delay: 2500,
+                  disableOnInteraction: false,
+                },
+                pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true,
+                },
+                navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+        }
+
+        function menuAnimation() {
+            var menu = document.querySelector("nav h3")
+            var full = document.querySelector("#full-scr")
+            var navimg = document.querySelector("nav img")
+            var flag = 0
+            menu.addEventListener("click", function () {
+                if (flag == 0) {
+                    full.style.top = 0
+                    navimg.style.opacity = 0
+                    flag = 1
+                } else {
+                    full.style.top = "-100%"
+                    navimg.style.opacity = 1
+                    flag = 0
+                }
+            })
+        }
+
+        function loaderAnimation() {
+            var loader = document.querySelector("#loader")
+            setTimeout(function () {
+                loader.style.top = "-100%"
+            }, 4200)
+        }
+
+        // Initialize mobile menu for responsive design
+        function initMobileMenu() {
+            const menuButton = document.querySelector("nav h3");
+            const navPart2 = document.querySelector("#nav-part2");
+            
+            if (window.innerWidth <= 600) {
+                // Create mobile menu container if it doesn't exist
+                if (!document.querySelector("#mobile-menu")) {
+                    const mobileMenu = document.createElement("div");
+                    mobileMenu.id = "mobile-menu";
+                    mobileMenu.style.position = "fixed";
+                    mobileMenu.style.top = "-100%";
+                    mobileMenu.style.left = "0";
+                    mobileMenu.style.width = "100%";
+                    mobileMenu.style.height = "100vh";
+                    mobileMenu.style.backgroundColor = "#EFEAE3";
+                    mobileMenu.style.zIndex = "99";
+                    mobileMenu.style.display = "flex";
+                    mobileMenu.style.flexDirection = "column";
+                    mobileMenu.style.alignItems = "center";
+                    mobileMenu.style.justifyContent = "center";
+                    mobileMenu.style.transition = "top 0.5s ease";
+                    
+                    // Clone nav items for mobile menu
+                    const navItems = navPart2.cloneNode(true);
+                    navItems.style.display = "flex";
+                    navItems.style.flexDirection = "column";
+                    navItems.style.gap = "20px";
+                    
+                    mobileMenu.appendChild(navItems);
+                    document.body.appendChild(mobileMenu);
+                }
+                
+                // Toggle mobile menu
+                let menuOpen = false;
+                menuButton.addEventListener("click", function() {
+                    const mobileMenu = document.querySelector("#mobile-menu");
+                    if (!menuOpen) {
+                        mobileMenu.style.top = "0";
+                        menuOpen = true;
+                    } else {
+                        mobileMenu.style.top = "-100%";
+                        menuOpen = false;
+                    }
+                });
+            }
+        }
+
+        // Add touch event handling for mobile devices
+        function initTouchEvents() {
+            if ('ontouchstart' in window) {
+                var elems = document.querySelectorAll(".elem");
+                var fixed = document.querySelector("#fixed-image");
+                
+                elems.forEach(function(elem) {
+                    elem.addEventListener("touchstart", function(e) {
+                        var image = this.getAttribute("data-image");
+                        fixed.style.backgroundImage = `url(${image})`;
+                        fixed.style.display = "block";
+                        
+                        // Hide image when touching elsewhere
+                        document.addEventListener("touchstart", function hideImage(e) {
+                            if (!e.target.closest(".elem")) {
+                                fixed.style.display = "none";
+                                document.removeEventListener("touchstart", hideImage);
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        // Run all animations
+        swiperAnimation();
+        page4Animation();
+        menuAnimation();
+        loaderAnimation();
+        window.addEventListener('load', initMobileMenu);
+        window.addEventListener('resize', initMobileMenu);
+        window.addEventListener('load', initTouchEvents);
+    </script>
 </body>
 
 </html>
+
