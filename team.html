@@ -121,8 +121,9 @@
 
         /* Team Grid */
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 1.5rem; /* Reduced from 2rem to allow more width for each card */
             padding: 0 10px; /* Reduced padding to maximize available width */
             margin-bottom: 2rem;
@@ -135,7 +136,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
+            width: 300px;
+            max-width: 100%;
         }
 
         .team-card:hover {
@@ -223,7 +225,7 @@
         /* Responsive Design */
         @media (max-width: 1200px) {
             .team-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+                gap: 1rem; /* Slightly reduce gap on medium screens */
             }
         }
 
@@ -235,11 +237,16 @@
             #nav-part2 {
                 display: none;
             }
+            
+            .team-card {
+                width: 280px;
+            }
         }
 
         @media (max-width: 500px) {
-            .team-grid {
-                grid-template-columns: 1fr; /* 1 card per row on mobile */
+            .team-card {
+                width: 100%;
+                max-width: 350px;
             }
         }
     </style>
@@ -284,7 +291,7 @@
                 <a href="https://www.instagram.com/filant_consultancy/"><i class="fab fa-instagram"></i></a>
             </div>
             <p>208, Parikh Commercial Center Above ICICI Bank Agashi Road Virar-West 401303.<br>
-            <a href="info@filantconsultancy.com" class="__cf_email__"><span class="__cf_email__" data-cfemail="50393e363f1036393c313e24333f3e23253c24313e33297e333f3d">[email&#160;protected]</span></a> | +91- 9987548007</p>
+            <a href="info@filantconsultancy.com" class="__cf_email__"><span class="__cf_email__" data-cfemail="50393e363f1036393c313e24333f3e23253c24313e33297e333f3d">FilantConsultancy</span></a> | +91- 9987548007</p>
         </div>
     </footer>
 
@@ -294,23 +301,9 @@
             {
                 id: 1,
                 name: "Mr. Alok Jha",
-                role: "Chairman/Founder",
+                role: "ChairMan/Founder",
                 image: "./assets/founder.jpg",
                 linkedin: "https://www.linkedin.com/in/alok-jha-ab7a7191/"
-            },
-            {
-                id: 2,
-                name: "Mr. Krupesh Mahyavanshi",
-                role: "Co-Founder",
-                image: "./assets/COFOUNDER.jpg",
-                linkedin: "https://www.linkedin.com/in/krupesh-mahyavanshi-70122969/"
-            },
-            {
-                id: 3,
-                name: "Mr. Ashish Gupta",
-                role: "Branch Head",
-                image: "./assets/branchhead.jpg",
-                linkedin: "https://www.linkedin.com/in/ashish-gupta-57628a22a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
             },
             {
                 id: 4,
